@@ -1,0 +1,26 @@
+<%- include('includes/header') %>
+  
+  <div class="container py-md-5 container--narrow">
+
+  <%- include('includes/flash') %>
+
+    <% if (posts.length)  { %>
+    <h2 class="text-center mb-4">The Latest From Those You Follow</h2>
+    	<div class="list-group">
+ 	   	  <% posts.forEach(function(post) { %>
+ 	   	  <a href="/post/<%= post._id %>" class="list-group-item list-group-item-action">
+ 	   	    <img class="avatar-tiny" src="<%= post.author.avatar %>">
+ 	   	    <strong><%= post.title %></strong> <span class="text-muted small">by <%= post.author.username %> on <%= post.createdDate.getMonth() + 1 %></span>
+ 	   	  </a>
+ 	   	  <% }) %>
+ 	   	</div>
+    <% } else { %>
+    	<div class="text-center">
+      		<h3>Welcome <strong>'<%= user.username %>'</strong>, your feed is currently empty.</h3>
+      		<p class="lead text-muted">Normally your &apos;Feed&apos; (this page) will display the latest posts from the people you follow. If you don&rsquo;t have any friends to follow, simply use the &apos;Search&apos; feature in the top menu bar to find content written by people with similar interests and then follow them.</p> 
+          <p class="lead text-muted">Your &apos;Profile&apos; displays <strong><span style="color:#000;">your</span></strong> posts and you can also see who you are following and who is following you. In the top menu bar there is a &apos;Chat&apos; feature allowing communication in real time, and there is the &apos;Help&apos; feature which gives some pointers to formatting the text when writing your posts.</p>
+    	</div> 
+    <% } %> 
+  </div>
+  
+<%- include('includes/footer') %>
